@@ -13,7 +13,7 @@ The main question I'm answering with this project is:
   **followed by**
   
   ```js
-  import { Proxy } from'cloakroom-smart-buffer-proxy';
+  import { Proxy } from 'cloakroom-smart-buffer-proxy';
   ``` 
   
   *or*
@@ -30,6 +30,7 @@ The `cloakroom-smart-buffer` module crosses the 100% test coverage level and it 
 ## Run it
 Use `Node.js 10` (well, lower versions *might* work, but you can get on your bike if you think I'm supporting them).
 
+### Test program
 ```bash
  % git clone git@github.com:spacekitcat/cloakroom-smart-buffer-proxy-integration-test.git
  % cd cloakroom-smart-buffer-proxy-integration-test
@@ -54,3 +55,8 @@ ticket 3                 51
 ticket 4                         null
 [ 65, 67, 66, 68, 84, 100, 116, 117, 118 ]
 ````
+
+### Automatic Jest tests
+```bash
+cloakroom-smart-buffer-proxy-integration-test <master> % yarn run test
+```
