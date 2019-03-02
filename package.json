@@ -1,0 +1,9 @@
+{
+  "name": "cloakroom-smart-buffer-proxy-example",
+  "version": "1.0.0",
+  "description": "Example client code for cloakroom",
+  "main": "index.js",
+  "repository": "https://github.com/spacekitcat/cloakroom-smart-buffer-proxy/example",
+  "author": "L!SA BURTON",
+  "license": "MIT"
+}
