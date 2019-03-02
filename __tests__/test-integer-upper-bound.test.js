@@ -25,7 +25,7 @@ const checkTicketListInvalidated = (savedTickets, proxy) => {
     });
 }
 
-describe('When the internal counter is pushed past 2^32', () => {
+describe('Roll over code', () => {
     it('should rollover', () => {
         const proxy = new Proxy(100);
         for (let i = 0; i < 100; ++i) {
