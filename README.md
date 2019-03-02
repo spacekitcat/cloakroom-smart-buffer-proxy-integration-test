@@ -1,9 +1,31 @@
 # cloakroom-smart-buffer-proxy-integration-test
 
-The test project for `cloakroom-smart-buffer-proxy`, currently for manual testing, but a starting point for something that's automatic.
-The main question I'm answering with this project is: Can I run `yarn install cloakroom-smart-buffer-proxy --save` and then do `import { Proxy } from'cloakroom-smart-buffer-proxy';` or `const { Proxy } = require('cloakroom-smart-buffer-proxy');` without an hassle?
+The test project for `cloakroom-smart-buffer-proxy`, currently for manual testing, but a starting point for something that's automatic.  
 
-The `cloakroom-smart-buffer` module crossed the 100% test coverage level and it then has a layer beyond that threshold that pose scenarios designed to stress test the code. It's totally untested in the context it's designed for (iberian-magpie), so this also lets me think of the module from the point of view of a downstream dependency. I'm a little unsure if the behaviour of this module will be as useful as I hope because I don't know how sound my ideas are for a cache optimized implementation of LZ77. This is all an experiment and I'll learn important facts either way.
+The main question I'm answering with this project is:
+
+ Can I run
+ 
+ ```bash
+ <master*> % yarn install cloakroom-smart-buffer-proxy --save
+ ```
+ 
+  **followed by**
+  
+  ```js
+  import { Proxy } from'cloakroom-smart-buffer-proxy';
+  ``` 
+  
+  *or*
+  
+   ```js
+   const { Proxy } = require('cloakroom-smart-buffer-proxy');
+   ``` 
+   
+   all without any hassle?
+
+## Upstream testing
+The `cloakroom-smart-buffer` module crosses the 100% test coverage level and it then has a layer beyond that pose scenarios designed to stress test the code. It's totally untested in the context it's designed for (iberian-magpie), so this also lets me think of the module from the point of view of a downstream dependency. I'm a little unsure if the module's beahviour will be as useful as I hope because I don't know how sound my ideas are for a cache optimized implementation of LZ77. This is all an experiment and I'll learn important facts either way.
 
 ## Run it
 Use `Node.js 10` (well, lower versions *might* work, but you can get on your bike if you think I'm supporting them).
