@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/spacekitcat/cloakroom-smart-buffer-proxy/example",
   "author": "L!SA BURTON",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cloakroom-smart-buffer-proxy": "^1.3.0"
+  }
 }
