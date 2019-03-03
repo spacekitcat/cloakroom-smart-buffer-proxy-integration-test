@@ -21,28 +21,36 @@ const checkTicketListIntegrity = (savedTickets, proxy) => {
 
 const checkTicketListInvalidated = (savedTickets, proxy) => {
     savedTickets.forEach((ticketDescriptor, index) => {
-        verifyTicket(proxy, { ticket: ticketDescriptor.ticket, expectedValue: null }, index)
+        console.log(`[${index}] Expecting ticket, ${ticketDescriptor.ticket}, to resolve to, null, actually: ${proxy.readCloakroomTicket(ticketDescriptor.ticket)}`);
+        expect(proxy.readCloakroomTicket(ticketDescriptor.ticket)).toBe(null);
     });
 }
 
 describe('Roll over code', () => {
     it('should rollover', () => {
-        const proxy = new Proxy(100);
-        for (let i = 0; i < 100; ++i) {
+        const proxy = new Proxy(10);
+        for (let i = 0; i < 20; ++i) {
             proxy.append(Buffer.from(randomstring.generate(1)));
         }
 
         const savedTickets = [];
-        for (let i = 0; i < 100; ++i) {
-            saveTicket(savedTickets, proxy.getCloakroomTicket(i), proxy.getReadOnlyBuffer()[proxy.getReadOnlyBuffer().length - 1 - i]);
+        for (let i = 0; i < 5; ++i) {
+            saveTicket(savedTickets, proxy.getCloakroomTicket(i), proxy.getReadOnlyBuffer()[proxy.getReadOnlyBuffer().length - i - 1]);
         }
         checkTicketListIntegrity(savedTickets, proxy);
 
-        for (let i = 0; i < 25; ++i) {
+        for (let i = 0; i < 3; ++i) {
             proxy.append(Buffer.from(randomstring.generate(1)));
         }
 
-        checkTicketListIntegrity(savedTickets.slice(0, 75), proxy);
-        checkTicketListInvalidated(savedTickets.slice(75), proxy);
+        checkTicketListIntegrity(savedTickets, proxy);
+
+        for (let i = 0; i < 3; ++i) {
+            proxy.append(Buffer.from(randomstring.generate(1)));
+        }
+
+        checkTicketListIntegrity(savedTickets.slice(0, savedTickets.length-1), proxy);
+        expect(proxy.readCloakroomTicket(savedTickets[savedTickets.length-1].ticket)).toBe(null);
+
     });
 });

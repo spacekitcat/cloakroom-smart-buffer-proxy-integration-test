@@ -1,6 +1,6 @@
 {
   "name": "cloakroom-smart-buffer-proxy-example",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Example client code for cloakroom",
   "main": "index.js",
   "repository": "https://github.com/spacekitcat/cloakroom-smart-buffer-proxy/example",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
-    "cloakroom-smart-buffer-proxy": "^1.3.10"
+    "cloakroom-smart-buffer-proxy": "^1.3.24"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
