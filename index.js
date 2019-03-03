@@ -26,10 +26,10 @@ instance.append(Buffer.from([0x54]));
 console.log(instance.getReadOnlyBuffer());
 instance.append(Buffer.from([0x64]));
 console.log(instance.getReadOnlyBuffer());
-console.log('ticket 1', instance.readCloakroomTicket(ticket1))
-console.log('ticket 2\t', instance.readCloakroomTicket(ticket2));
-console.log('ticket 3\t\t', instance.readCloakroomTicket(ticket3));
-console.log('ticket 4\t\t\t', instance.readCloakroomTicket(ticket4));
+console.log('', instance.readCloakroomTicket(ticket1))
+console.log('\t', instance.readCloakroomTicket(ticket2));
+console.log('\t\t', instance.readCloakroomTicket(ticket3));
+console.log('\t\t\t', instance.readCloakroomTicket(ticket4));
 
 instance.append(Buffer.from([0x74, 0x75, 0x76]));
 console.log(instance.getReadOnlyBuffer());
