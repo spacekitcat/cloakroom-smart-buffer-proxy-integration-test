@@ -2,8 +2,8 @@ import { Proxy } from 'cloakroom-smart-buffer-proxy';
 import randomstring from 'randomstring';
 
 const verifyTicket = (proxy, ticketDescriptor, index) => {
-    console.log(`[${index}] Expecting ticket, ${ticketDescriptor.ticket}, to resolve to, ${ticketDescriptor.expectedValue}, actually: ${proxy.readCloakroomTicket(ticketDescriptor.ticket)}`);
-    expect(proxy.readCloakroomTicket(ticketDescriptor.ticket)).toBe(ticketDescriptor.expectedValue);
+    console.log(`[${index}] Expecting ticket, ${ticketDescriptor.ticket}, to resolve to, ${ticketDescriptor.expectedValue}, actually: ${proxy.resolveTicket(ticketDescriptor.ticket)}`);
+    expect(proxy.resolveTicket(ticketDescriptor.ticket)).toBe(ticketDescriptor.expectedValue);
 };
 
 const saveTicket = (savedTickets, ticket, expectedValue) => {
@@ -21,8 +21,8 @@ const checkTicketListIntegrity = (savedTickets, proxy) => {
 
 const checkTicketListInvalidated = (savedTickets, proxy) => {
     savedTickets.forEach((ticketDescriptor, index) => {
-        console.log(`[${index}] Expecting ticket, ${ticketDescriptor.ticket}, to resolve to, null, actually: ${proxy.readCloakroomTicket(ticketDescriptor.ticket)}`);
-        expect(proxy.readCloakroomTicket(ticketDescriptor.ticket)).toBe(null);
+        console.log(`[${index}] Expecting ticket, ${ticketDescriptor.ticket}, to resolve to, null, actually: ${proxy.resolveTicket(ticketDescriptor.ticket)}`);
+        expect(proxy.resolveTicket(ticketDescriptor.ticket)).toBe(null);
     });
 }
 
@@ -35,7 +35,7 @@ describe('Roll over code', () => {
 
         const savedTickets = [];
         for (let i = 0; i < 5; ++i) {
-            saveTicket(savedTickets, proxy.getCloakroomTicket(i), proxy.getReadOnlyBuffer()[proxy.getReadOnlyBuffer().length - i - 1]);
+            saveTicket(savedTickets, proxy.createTicket(i), proxy.getReadOnlyBuffer()[proxy.getReadOnlyBuffer().length - i - 1]);
         }
         checkTicketListIntegrity(savedTickets, proxy);
 
@@ -50,7 +50,7 @@ describe('Roll over code', () => {
         }
 
         checkTicketListIntegrity(savedTickets.slice(0, savedTickets.length-1), proxy);
-        expect(proxy.readCloakroomTicket(savedTickets[savedTickets.length-1].ticket)).toBe(null);
+        expect(proxy.resolveTicket(savedTickets[savedTickets.length-1].ticket)).toBe(null);
 
     });
 });
